@@ -159,7 +159,11 @@ function sendOtp() {
         body: `type=sendOtp&phone=${phone}`,
         credentials: "include"
     })
-    .then(res => res.json())
+    .then(res => res.text())
+.then(text => {
+    console.log(text);
+    return JSON.parse(text);
+})
     .then(data => {
         showMsg("msg", data.message, data.status ? "green" : "red");
 
@@ -185,7 +189,11 @@ function verifyOtp() {
         body: `type=verifyOtp&otp=${otp}`,
         credentials: "include"
     })
-    .then(res => res.json())
+   .then(res => res.text())
+.then(text => {
+    console.log(text);
+    return JSON.parse(text);
+})
     .then(data => {
 
         if (data.status == 1) {
